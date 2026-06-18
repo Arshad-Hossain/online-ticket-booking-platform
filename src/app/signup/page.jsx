@@ -1,5 +1,10 @@
 "use client";
 
+import React, { useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { authClient } from "@/lib/auth-client";
+
 import {
   Button,
   FieldError,
@@ -9,21 +14,38 @@ import {
   Label,
   Surface,
   TextField,
+  Select,
+  ListBox,
 } from "@heroui/react";
 
-import { Select, ListBox } from "@heroui/react";
-
-import Link from "next/link";
-import React from "react";
-
 export default function SignUpPage() {
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    const formData = new FormData(e.currentTarget);
-    const user = Object.fromEntries(formData.entries());
+    try {
+      setLoading(true);
 
-    console.log(user);
+      const formData = new FormData(e.currentTarget);
+      const user = Object.fromEntries(formData.entries());
+
+      await authClient.signUp.email({
+        name: user.name,
+        email: user.email,
+        password: user.password,
+        image: user.image,
+        signupAs: user.signupAs,
+      });
+
+      router.push("/");
+    } catch (error) {
+      console.error("Signup Error:", error);
+      alert("Failed to create account");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -50,10 +72,13 @@ export default function SignUpPage() {
                 <FieldError />
               </TextField>
 
-              {/* Image */}
+              {/* Image URL */}
               <TextField name="image" type="url">
                 <Label className="text-[#e6d5c3]">Profile Image URL</Label>
-                <Input placeholder="https://..." variant="secondary" />
+                <Input
+                  placeholder="https://example.com/photo.jpg"
+                  variant="secondary"
+                />
                 <FieldError />
               </TextField>
 
@@ -71,8 +96,12 @@ export default function SignUpPage() {
                 <FieldError />
               </TextField>
 
-              {/* Role */}
-              <Select isRequired name="role" placeholder="Select role">
+              {/* Signup As */}
+              <Select
+                isRequired
+                name="signupAs"
+                placeholder="Select account type"
+              >
                 <Label className="text-[#e6d5c3]">Signup As</Label>
 
                 <Select.Trigger>
@@ -97,17 +126,18 @@ export default function SignUpPage() {
                 </Select.Popover>
               </Select>
 
-              {/* Submit */}
+              {/* Submit Button */}
               <Button
                 type="submit"
+                isDisabled={loading}
                 className="w-full mt-2 bg-gradient-to-r from-[#c8a27a] to-[#e6c29f] text-[#1c120d] font-semibold py-2 rounded-xl hover:scale-[1.02] transition shadow-lg"
               >
-                Sign Up
+                {loading ? "Creating Account..." : "Sign Up"}
               </Button>
             </Fieldset>
           </Form>
 
-          {/* Footer link */}
+          {/* Footer */}
           <div className="text-center mt-6 text-sm text-[#c8a27a]">
             Already have an account?{" "}
             <Link
