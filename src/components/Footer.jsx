@@ -1,15 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { Train, Mail, Phone, MapPin } from "lucide-react";
-import { FaFacebookF, FaInstagram, FaXTwitter } from "react-icons/fa6";
+import { Train, Mail, Phone, CreditCard } from "lucide-react";
+import { FaFacebookF } from "react-icons/fa6";
 
 const Footer = () => {
   return (
     <footer className="bg-[#1c120d] border-t border-[#c8a27a]/20 text-[#e6d5c3]">
       <div className="max-w-7xl mx-auto px-6 py-12">
-        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
-          {/* Brand */}
+        {/* Main Footer */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+          {/* Column 1 - Brand */}
           <div>
             <div className="flex items-center gap-3 mb-4">
               <div className="bg-gradient-to-r from-[#c8a27a] to-[#e6c29f] p-2 rounded-xl shadow-lg">
@@ -18,19 +19,18 @@ const Footer = () => {
 
               <div>
                 <h2 className="text-xl font-bold text-[#f5e6d3]">TicketBari</h2>
-                <p className="text-xs text-[#c8a27a]">
-                  Bus & Train Ticket Booking
-                </p>
+                <p className="text-xs text-[#c8a27a]">Smart Travel Booking</p>
               </div>
             </div>
 
             <p className="text-sm text-[#d8c2a8] leading-6">
-              Book bus and train tickets quickly and securely. Travel smarter
-              with TicketBari and enjoy a warm, smooth booking experience ☕
+              Book bus, train, launch & flight tickets easily from anywhere.
+              Fast, secure and reliable ticket booking platform for your
+              journey.
             </p>
           </div>
 
-          {/* Quick Links */}
+          {/* Column 2 - Quick Links */}
           <div>
             <h3 className="text-[#f5e6d3] font-semibold mb-4">Quick Links</h3>
 
@@ -51,28 +51,6 @@ const Footer = () => {
               </li>
 
               <li>
-                <Link href="/login" className="hover:text-[#e6c29f] transition">
-                  Login
-                </Link>
-              </li>
-
-              <li>
-                <Link
-                  href="/register"
-                  className="hover:text-[#e6c29f] transition"
-                >
-                  Register
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Support */}
-          <div>
-            <h3 className="text-[#f5e6d3] font-semibold mb-4">Support</h3>
-
-            <ul className="space-y-3">
-              <li>
                 <Link
                   href="/contact"
                   className="hover:text-[#e6c29f] transition"
@@ -82,78 +60,58 @@ const Footer = () => {
               </li>
 
               <li>
-                <Link href="/faq" className="hover:text-[#e6c29f] transition">
-                  FAQ
-                </Link>
-              </li>
-
-              <li>
-                <Link
-                  href="/privacy-policy"
-                  className="hover:text-[#e6c29f] transition"
-                >
-                  Privacy Policy
-                </Link>
-              </li>
-
-              <li>
-                <Link href="/terms" className="hover:text-[#e6c29f] transition">
-                  Terms & Conditions
+                <Link href="/about" className="hover:text-[#e6c29f] transition">
+                  About
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Contact & Social */}
+          {/* Column 3 - Contact Info */}
           <div>
-            <h3 className="text-[#f5e6d3] font-semibold mb-4">Contact</h3>
+            <h3 className="text-[#f5e6d3] font-semibold mb-4">Contact Info</h3>
 
-            <div className="space-y-3 text-sm text-[#d8c2a8]">
-              <div className="flex items-center gap-2">
+            <div className="space-y-4 text-sm text-[#d8c2a8]">
+              <div className="flex items-center gap-3">
                 <Mail size={16} />
                 <span>support@ticketbari.com</span>
               </div>
 
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-3">
                 <Phone size={16} />
                 <span>+880 1234-567890</span>
               </div>
 
-              <div className="flex items-center gap-2">
-                <MapPin size={16} />
-                <span>Dhaka, Bangladesh</span>
+              <div className="flex items-center gap-3">
+                <FaFacebookF size={14} />
+                <span>facebook.com/ticketbari</span>
               </div>
             </div>
+          </div>
 
-            {/* Social */}
-            <div className="flex items-center gap-3 mt-6">
-              <a
-                href="#"
-                className="bg-[#2a1a14] p-2 rounded-full hover:bg-[#c8a27a] hover:text-[#1c120d] transition"
-              >
-                <FaFacebookF size={16} />
-              </a>
+          {/* Column 4 - Payment Methods */}
+          <div>
+            <h3 className="text-[#f5e6d3] font-semibold mb-4">
+              Payment Methods
+            </h3>
 
-              <a
-                href="#"
-                className="bg-[#2a1a14] p-2 rounded-full hover:bg-[#c8a27a] hover:text-[#1c120d] transition"
-              >
-                <FaInstagram size={16} />
-              </a>
+            <div className="space-y-4">
+              <div className="flex items-center gap-3 bg-[#2a1a14] border border-[#c8a27a]/20 rounded-xl p-3">
+                <CreditCard size={20} className="text-[#e6c29f]" />
+                <span>Stripe</span>
+              </div>
 
-              <a
-                href="#"
-                className="bg-[#2a1a14] p-2 rounded-full hover:bg-[#c8a27a] hover:text-[#1c120d] transition"
-              >
-                <FaXTwitter size={16} />
-              </a>
+              <p className="text-sm text-[#d8c2a8]">
+                Secure online payments with industry-standard encryption and
+                protection.
+              </p>
             </div>
           </div>
         </div>
 
         {/* Bottom Bar */}
         <div className="border-t border-[#c8a27a]/20 mt-10 pt-6 text-center text-sm text-[#c8a27a]">
-          © {new Date().getFullYear()} TicketBari. All rights reserved.
+          © 2026 TicketBari. All rights reserved.
         </div>
       </div>
     </footer>
