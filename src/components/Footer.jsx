@@ -6,37 +6,37 @@ import { FaFacebookF, FaInstagram, FaXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
   return (
-    <footer className="bg-slate-950 border-t border-white/10 text-slate-300">
+    <footer className="bg-[#1c120d] border-t border-[#c8a27a]/20 text-[#e6d5c3]">
       <div className="max-w-7xl mx-auto px-6 py-12">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <div className="bg-gradient-to-r from-cyan-500 to-blue-600 p-2 rounded-xl">
-                <Train className="w-5 h-5 text-white" />
+              <div className="bg-gradient-to-r from-[#c8a27a] to-[#e6c29f] p-2 rounded-xl shadow-lg">
+                <Train className="w-5 h-5 text-[#1c120d]" />
               </div>
 
               <div>
-                <h2 className="text-xl font-bold text-white">TicketBari</h2>
-                <p className="text-xs text-slate-400">
+                <h2 className="text-xl font-bold text-[#f5e6d3]">TicketBari</h2>
+                <p className="text-xs text-[#c8a27a]">
                   Bus & Train Ticket Booking
                 </p>
               </div>
             </div>
 
-            <p className="text-sm text-slate-400 leading-6">
+            <p className="text-sm text-[#d8c2a8] leading-6">
               Book bus and train tickets quickly and securely. Travel smarter
-              with TicketBari and enjoy a seamless booking experience.
+              with TicketBari and enjoy a warm, smooth booking experience ☕
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-white font-semibold mb-4">Quick Links</h3>
+            <h3 className="text-[#f5e6d3] font-semibold mb-4">Quick Links</h3>
 
             <ul className="space-y-3">
               <li>
-                <Link href="/" className="hover:text-cyan-400 transition">
+                <Link href="/" className="hover:text-[#e6c29f] transition">
                   Home
                 </Link>
               </li>
@@ -44,14 +44,14 @@ const Footer = () => {
               <li>
                 <Link
                   href="/tickets"
-                  className="hover:text-cyan-400 transition"
+                  className="hover:text-[#e6c29f] transition"
                 >
                   All Tickets
                 </Link>
               </li>
 
               <li>
-                <Link href="/login" className="hover:text-cyan-400 transition">
+                <Link href="/login" className="hover:text-[#e6c29f] transition">
                   Login
                 </Link>
               </li>
@@ -59,7 +59,7 @@ const Footer = () => {
               <li>
                 <Link
                   href="/register"
-                  className="hover:text-cyan-400 transition"
+                  className="hover:text-[#e6c29f] transition"
                 >
                   Register
                 </Link>
@@ -69,20 +69,20 @@ const Footer = () => {
 
           {/* Support */}
           <div>
-            <h3 className="text-white font-semibold mb-4">Support</h3>
+            <h3 className="text-[#f5e6d3] font-semibold mb-4">Support</h3>
 
             <ul className="space-y-3">
               <li>
                 <Link
                   href="/contact"
-                  className="hover:text-cyan-400 transition"
+                  className="hover:text-[#e6c29f] transition"
                 >
                   Contact Us
                 </Link>
               </li>
 
               <li>
-                <Link href="/faq" className="hover:text-cyan-400 transition">
+                <Link href="/faq" className="hover:text-[#e6c29f] transition">
                   FAQ
                 </Link>
               </li>
@@ -90,14 +90,14 @@ const Footer = () => {
               <li>
                 <Link
                   href="/privacy-policy"
-                  className="hover:text-cyan-400 transition"
+                  className="hover:text-[#e6c29f] transition"
                 >
                   Privacy Policy
                 </Link>
               </li>
 
               <li>
-                <Link href="/terms" className="hover:text-cyan-400 transition">
+                <Link href="/terms" className="hover:text-[#e6c29f] transition">
                   Terms & Conditions
                 </Link>
               </li>
@@ -106,9 +106,9 @@ const Footer = () => {
 
           {/* Contact & Social */}
           <div>
-            <h3 className="text-white font-semibold mb-4">Contact</h3>
+            <h3 className="text-[#f5e6d3] font-semibold mb-4">Contact</h3>
 
-            <div className="space-y-3 text-sm text-slate-400">
+            <div className="space-y-3 text-sm text-[#d8c2a8]">
               <div className="flex items-center gap-2">
                 <Mail size={16} />
                 <span>support@ticketbari.com</span>
@@ -125,24 +125,25 @@ const Footer = () => {
               </div>
             </div>
 
+            {/* Social */}
             <div className="flex items-center gap-3 mt-6">
               <a
                 href="#"
-                className="bg-slate-800 p-2 rounded-full hover:bg-cyan-500 hover:text-white transition"
+                className="bg-[#2a1a14] p-2 rounded-full hover:bg-[#c8a27a] hover:text-[#1c120d] transition"
               >
                 <FaFacebookF size={16} />
               </a>
 
               <a
                 href="#"
-                className="bg-slate-800 p-2 rounded-full hover:bg-cyan-500 hover:text-white transition"
+                className="bg-[#2a1a14] p-2 rounded-full hover:bg-[#c8a27a] hover:text-[#1c120d] transition"
               >
                 <FaInstagram size={16} />
               </a>
 
               <a
                 href="#"
-                className="bg-slate-800 p-2 rounded-full hover:bg-cyan-500 hover:text-white transition"
+                className="bg-[#2a1a14] p-2 rounded-full hover:bg-[#c8a27a] hover:text-[#1c120d] transition"
               >
                 <FaXTwitter size={16} />
               </a>
@@ -151,7 +152,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-white/10 mt-10 pt-6 text-center text-sm text-slate-500">
+        <div className="border-t border-[#c8a27a]/20 mt-10 pt-6 text-center text-sm text-[#c8a27a]">
           © {new Date().getFullYear()} TicketBari. All rights reserved.
         </div>
       </div>

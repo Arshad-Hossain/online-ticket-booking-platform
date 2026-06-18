@@ -2,175 +2,109 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { Menu, X, TrainFront } from "lucide-react";
+import { Menu, X, Train } from "lucide-react";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
 
-  // Replace this later with your auth user
-  const user = null;
-
   return (
-    <header className="fixed top-0 left-0 w-full z-50 bg-slate-950/90 backdrop-blur-md border-b border-white/10 shadow-lg">
+    <header className="fixed top-0 left-0 w-full z-50 bg-[#1c120d]/95 backdrop-blur-md border-b border-[#c8a27a]/20 shadow-lg">
       <nav className="max-w-7xl mx-auto flex items-center justify-between px-5 py-4">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-3">
-          <div className="bg-gradient-to-r from-cyan-500 to-blue-600 p-2.5 rounded-xl shadow-lg">
-            <TrainFront className="w-6 h-6 text-white" />
+        {/* LEFT - LOGO */}
+        <Link href="/" className="flex items-center gap-3 min-w-fit">
+          <div className="bg-gradient-to-r from-[#c8a27a] to-[#e6c29f] p-2.5 rounded-xl shadow-lg">
+            <Train className="w-6 h-6 text-[#1c120d]" />
           </div>
 
-          <div>
-            <h1 className="text-2xl font-extrabold text-white tracking-wide">
+          <div className="flex flex-col">
+            <h1 className="text-lg sm:text-2xl font-extrabold text-[#f5e6d3] tracking-wide leading-tight">
               TicketBari
             </h1>
-            <p className="text-xs text-slate-400">Bus & Train Ticket Booking</p>
+            <p className="text-[10px] sm:text-xs text-[#c8a27a] leading-none">
+              Bus & Train Ticket Booking
+            </p>
           </div>
         </Link>
 
-        {/* Desktop Menu */}
-        <ul className="hidden md:flex items-center gap-8">
-          <li>
-            <Link
-              href="/"
-              className="text-slate-300 hover:text-cyan-400 transition duration-300"
-            >
-              Home
-            </Link>
-          </li>
+        {/* CENTER MENU */}
+        <div className="hidden md:flex items-center gap-10">
+          <Link
+            href="/"
+            className="text-[#e6d5c3] hover:text-[#e6c29f] transition"
+          >
+            Home
+          </Link>
 
-          <li>
-            <Link
-              href="/tickets"
-              className="text-slate-300 hover:text-cyan-400 transition duration-300"
-            >
-              All Tickets
-            </Link>
-          </li>
-        </ul>
+          <Link
+            href="/tickets"
+            className="text-[#e6d5c3] hover:text-[#e6c29f] transition"
+          >
+            All Tickets
+          </Link>
 
-        {/* Right Side */}
-        <div className="hidden md:flex items-center gap-3">
-          {user ? (
-            <>
-              <Link
-                href="/my-bookings"
-                className="text-slate-300 hover:text-cyan-400 transition"
-              >
-                My Bookings
-              </Link>
-
-              <Link
-                href="/profile"
-                className="px-4 py-2 rounded-full bg-slate-800 text-white hover:bg-slate-700 transition"
-              >
-                Profile
-              </Link>
-
-              <button className="px-4 py-2 rounded-full bg-red-500 hover:bg-red-600 text-white transition">
-                Logout
-              </button>
-            </>
-          ) : (
-            <>
-              <Link
-                href="/login"
-                className="text-slate-300 hover:text-cyan-400 transition"
-              >
-                Login
-              </Link>
-
-              <Link
-                href="/register"
-                className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-5 py-2 rounded-full font-medium hover:scale-105 transition duration-300 shadow-lg"
-              >
-                Register
-              </Link>
-            </>
-          )}
+          <Link
+            href="/dashboard"
+            className="text-[#e6d5c3] hover:text-[#e6c29f] transition"
+          >
+            Dashboard
+          </Link>
         </div>
 
-        {/* Mobile Menu Button */}
-        <button onClick={() => setOpen(!open)} className="md:hidden text-white">
+        {/* RIGHT - LOGIN */}
+        <div className="hidden md:flex items-center">
+          <Link
+            href="/login"
+            className="bg-gradient-to-r from-[#c8a27a] to-[#e6c29f] text-[#1c120d] px-5 py-2 rounded-full font-semibold hover:scale-105 transition duration-300 shadow-lg"
+          >
+            Login
+          </Link>
+        </div>
+
+        {/* MOBILE BUTTON */}
+        <button
+          onClick={() => setOpen(!open)}
+          className="md:hidden text-[#f5e6d3]"
+        >
           {open ? <X size={28} /> : <Menu size={28} />}
         </button>
       </nav>
 
-      {/* Mobile Menu */}
+      {/* MOBILE MENU */}
       {open && (
-        <div className="md:hidden bg-slate-950 border-t border-white/10">
-          <ul className="flex flex-col gap-5 p-6">
-            <li>
-              <Link
-                href="/"
-                onClick={() => setOpen(false)}
-                className="text-slate-300 hover:text-cyan-400"
-              >
-                Home
-              </Link>
-            </li>
+        <div className="md:hidden bg-[#1c120d] border-t border-[#c8a27a]/20">
+          <div className="flex flex-col gap-5 p-6">
+            <Link
+              href="/"
+              onClick={() => setOpen(false)}
+              className="text-[#e6d5c3] hover:text-[#e6c29f]"
+            >
+              Home
+            </Link>
 
-            <li>
-              <Link
-                href="/tickets"
-                onClick={() => setOpen(false)}
-                className="text-slate-300 hover:text-cyan-400"
-              >
-                All Tickets
-              </Link>
-            </li>
+            <Link
+              href="/tickets"
+              onClick={() => setOpen(false)}
+              className="text-[#e6d5c3] hover:text-[#e6c29f]"
+            >
+              All Tickets
+            </Link>
 
-            {user ? (
-              <>
-                <li>
-                  <Link
-                    href="/my-bookings"
-                    onClick={() => setOpen(false)}
-                    className="text-slate-300 hover:text-cyan-400"
-                  >
-                    My Bookings
-                  </Link>
-                </li>
+            <Link
+              href="/dashboard"
+              onClick={() => setOpen(false)}
+              className="text-[#e6d5c3] hover:text-[#e6c29f]"
+            >
+              Dashboard
+            </Link>
 
-                <li>
-                  <Link
-                    href="/profile"
-                    onClick={() => setOpen(false)}
-                    className="text-slate-300 hover:text-cyan-400"
-                  >
-                    Profile
-                  </Link>
-                </li>
-
-                <li>
-                  <button className="text-red-400 hover:text-red-300">
-                    Logout
-                  </button>
-                </li>
-              </>
-            ) : (
-              <>
-                <li>
-                  <Link
-                    href="/login"
-                    onClick={() => setOpen(false)}
-                    className="text-slate-300 hover:text-cyan-400"
-                  >
-                    Login
-                  </Link>
-                </li>
-
-                <li>
-                  <Link
-                    href="/register"
-                    onClick={() => setOpen(false)}
-                    className="block text-center bg-gradient-to-r from-cyan-500 to-blue-600 py-3 rounded-full text-white font-medium"
-                  >
-                    Register
-                  </Link>
-                </li>
-              </>
-            )}
-          </ul>
+            <Link
+              href="/login"
+              onClick={() => setOpen(false)}
+              className="text-center bg-gradient-to-r from-[#c8a27a] to-[#e6c29f] py-3 rounded-full text-[#1c120d] font-semibold"
+            >
+              Login
+            </Link>
+          </div>
         </div>
       )}
     </header>
