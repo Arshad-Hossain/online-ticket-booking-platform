@@ -43,12 +43,12 @@ const dashboardConfig = {
     {
       label: "My Added Tickets",
       icon: ClipboardList,
-      link: "/dashboard/vendor/tickets",
+      link: "/dashboard/vendor/my-added-tickets",
     },
     {
       label: "Requested Bookings",
       icon: Ticket,
-      link: "/dashboard/vendor/requests",
+      link: "/dashboard/vendor/requested-bookings",
     },
     {
       label: "Revenue Overview",
