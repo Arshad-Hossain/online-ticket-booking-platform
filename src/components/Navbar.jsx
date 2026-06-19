@@ -6,8 +6,10 @@ import { Menu, X, Train, Sun, Moon } from "lucide-react";
 
 import { authClient } from "@/lib/auth-client";
 import { Avatar, Dropdown, Label } from "@heroui/react";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
+  const router = useRouter();
   const [open, setOpen] = useState(false);
   const [theme, setTheme] = useState("dark");
 
@@ -42,6 +44,7 @@ const Navbar = () => {
   // -----------------------
   const handleSignOut = async () => {
     await authClient.signOut();
+    router.push("/");
   };
 
   return (
@@ -71,14 +74,22 @@ const Navbar = () => {
             All Tickets
           </Link>
 
-          {user && (
+          <Link
+            // href={`/dashboard/${user.signupAs}`}
+            href="/dashboard"
+            className="text-[#e6d5c3] hover:text-[#e6c29f]"
+          >
+            Dashboard
+          </Link>
+
+          {/* {user && (
             <Link
-              href="/dashboard"
+              href={`/dashboard/${user.signupAs}`}
               className="text-[#e6d5c3] hover:text-[#e6c29f]"
             >
               Dashboard
             </Link>
-          )}
+          )} */}
         </div>
 
         {/* RIGHT SIDE */}
