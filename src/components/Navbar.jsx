@@ -6,7 +6,7 @@ import { Menu, X, Train, Sun, Moon } from "lucide-react";
 
 import { authClient } from "@/lib/auth-client";
 import { Avatar, Dropdown, Label } from "@heroui/react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const Navbar = () => {
   const router = useRouter();
@@ -15,6 +15,11 @@ const Navbar = () => {
 
   const { data: session } = authClient.useSession();
   const user = session?.user;
+
+  // const pathname = usePathname();
+  // if (pathname.includes("dashboard")) {
+  //   return null;
+  // }
 
   useEffect(() => {
     const saved = localStorage.getItem("theme");
@@ -70,7 +75,10 @@ const Navbar = () => {
             Home
           </Link>
 
-          <Link href="/tickets" className="text-[#e6d5c3] hover:text-[#e6c29f]">
+          <Link
+            href="/all-tickets"
+            className="text-[#e6d5c3] hover:text-[#e6c29f]"
+          >
             All Tickets
           </Link>
 
@@ -156,7 +164,7 @@ const Navbar = () => {
                 {/* MENU */}
                 <Dropdown.Menu>
                   <Dropdown.Item id="profile">
-                    <Link href="/profile">
+                    <Link href={`/dashboard/${user.signupAs}/profile`}>
                       <Label className="text-purple-500">My Profile</Label>
                     </Link>
                   </Dropdown.Item>
