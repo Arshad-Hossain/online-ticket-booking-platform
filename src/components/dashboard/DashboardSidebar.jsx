@@ -59,7 +59,11 @@ const dashboardConfig = {
 
   admin: [
     { label: "Admin Profile", icon: User, link: "/dashboard/admin/profile" },
-    { label: "Manage Tickets", icon: Ticket, link: "/dashboard/admin/tickets" },
+    {
+      label: "Manage Tickets",
+      icon: Ticket,
+      link: "/dashboard/admin/manage-tickets",
+    },
     { label: "Manage Users", icon: Users, link: "/dashboard/admin/users" },
     {
       label: "Advertise Tickets",
