@@ -64,11 +64,15 @@ const dashboardConfig = {
       icon: Ticket,
       link: "/dashboard/admin/manage-tickets",
     },
-    { label: "Manage Users", icon: Users, link: "/dashboard/admin/users" },
+    {
+      label: "Manage Users",
+      icon: Users,
+      link: "/dashboard/admin/manage-users",
+    },
     {
       label: "Advertise Tickets",
       icon: Megaphone,
-      link: "/dashboard/admin/ads",
+      link: "/dashboard/admin/advertise-tickets",
     },
   ],
 };

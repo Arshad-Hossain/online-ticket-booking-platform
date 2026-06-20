@@ -32,8 +32,8 @@ export default function SignUpPage() {
         alert(error.message || "Signup failed");
         return;
       }
-
-      router.push("/");
+      alert("Signup Sccessful!");
+      router.push("/login");
     } catch (err) {
       console.error(err);
       alert("Something went wrong");

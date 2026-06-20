@@ -65,7 +65,9 @@ const Navbar = () => {
             <h1 className="text-lg sm:text-2xl font-extrabold text-[#f5e6d3]">
               TicketBari
             </h1>
-            <p className="text-xs text-[#c8a27a]">Bus & Train Ticket Booking</p>
+            <p className="text-xs text-[#c8a27a]">
+              Bus, Train & Air Ticket Booking
+            </p>
           </div>
         </Link>
 
