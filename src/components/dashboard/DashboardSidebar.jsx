@@ -24,7 +24,7 @@ const dashboardConfig = {
     {
       label: "My Booked Tickets",
       icon: Ticket,
-      link: "/dashboard/user/bookings",
+      link: "/dashboard/user/my-booked-tickets",
     },
     {
       label: "Transaction History",
