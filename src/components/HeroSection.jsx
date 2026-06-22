@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Train, Bus, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 const HeroSection = () => {
   return (
@@ -16,7 +16,7 @@ const HeroSection = () => {
 
             <h1 className="mt-6 text-4xl md:text-6xl font-extrabold leading-tight">
               Book Your
-              <span className="text-[#e6c29f]"> Bus & Train </span>
+              <span className="text-[#e6c29f]"> Bus, Train & Flight </span>
               Tickets Easily
             </h1>
 
@@ -27,7 +27,7 @@ const HeroSection = () => {
 
             <div className="mt-8 flex flex-wrap gap-4">
               <Link
-                href="/tickets"
+                href="/all-tickets"
                 className="inline-flex items-center gap-2 bg-gradient-to-r from-[#c8a27a] to-[#e6c29f] text-[#1c120d] px-6 py-3 rounded-xl font-semibold hover:scale-105 transition"
               >
                 Book Tickets
@@ -61,41 +61,60 @@ const HeroSection = () => {
             </div>
           </div>
 
-          {/* Right Content */}
-          <div className="relative">
-            <div className="bg-[#2a1a14] border border-[#c8a27a]/20 rounded-3xl p-8 shadow-2xl">
-              <div className="flex justify-center gap-8 mb-8">
-                <div className="bg-[#c8a27a]/10 p-5 rounded-2xl">
-                  <Train size={50} className="text-[#e6c29f]" />
-                </div>
+          {/* Right Content - Transport Images */}
+          <div className="grid grid-cols-2 gap-4">
+            {/* Plane */}
+            <div className="col-span-2 relative group overflow-hidden rounded-3xl">
+              <img
+                src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=2074&auto=format&fit=crop"
+                alt="Plane"
+                className="w-full h-64 object-cover shadow-2xl group-hover:scale-105 transition duration-500"
+              />
 
-                <div className="bg-[#c8a27a]/10 p-5 rounded-2xl">
-                  <Bus size={50} className="text-[#e6c29f]" />
-                </div>
+              <div className="absolute inset-0 bg-black/30"></div>
+
+              <div className="absolute bottom-4 left-4">
+                <span className="bg-[#1c120d]/80 backdrop-blur-sm px-4 py-2 rounded-xl text-[#e6c29f] font-semibold">
+                  ✈️ Flight Tickets
+                </span>
               </div>
+            </div>
 
-              <h3 className="text-center text-2xl font-bold mb-4">
-                Travel Made Simple
-              </h3>
+            {/* Train */}
+            <div className="relative group overflow-hidden rounded-3xl">
+              <img
+                src="https://images.unsplash.com/photo-1474487548417-781cb71495f3?q=80&w=1200&auto=format&fit=crop"
+                alt="Train"
+                className="w-full h-52 object-cover shadow-xl group-hover:scale-105 transition duration-500"
+              />
 
-              <p className="text-center text-[#d8c2a8]">
-                Search destinations, compare schedules, and book your seat
-                without standing in long queues.
-              </p>
+              <div className="absolute inset-0 bg-black/30"></div>
 
-              <div className="mt-8 grid grid-cols-2 gap-4">
-                <div className="bg-[#1c120d] p-4 rounded-xl text-center">
-                  <h4 className="font-bold text-[#e6c29f]">Bus</h4>
-                  <p className="text-sm text-[#c8a27a]">Fast Booking</p>
-                </div>
+              <div className="absolute bottom-4 left-4">
+                <span className="bg-[#1c120d]/80 backdrop-blur-sm px-3 py-2 rounded-xl text-[#e6c29f] font-semibold text-sm">
+                  🚆 Train Tickets
+                </span>
+              </div>
+            </div>
 
-                <div className="bg-[#1c120d] p-4 rounded-xl text-center">
-                  <h4 className="font-bold text-[#e6c29f]">Train</h4>
-                  <p className="text-sm text-[#c8a27a]">Secure Tickets</p>
-                </div>
+            {/* Bus */}
+            <div className="relative group overflow-hidden rounded-3xl">
+              <img
+                src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=1200&auto=format&fit=crop"
+                alt="Bus"
+                className="w-full h-52 object-cover shadow-xl group-hover:scale-105 transition duration-500"
+              />
+
+              <div className="absolute inset-0 bg-black/30"></div>
+
+              <div className="absolute bottom-4 left-4">
+                <span className="bg-[#1c120d]/80 backdrop-blur-sm px-3 py-2 rounded-xl text-[#e6c29f] font-semibold text-sm">
+                  🚌 Bus Tickets
+                </span>
               </div>
             </div>
           </div>
+          {/* End Right Content */}
         </div>
       </div>
     </section>
