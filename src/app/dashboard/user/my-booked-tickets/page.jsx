@@ -69,15 +69,6 @@ export default function MyBookedTicketsPage() {
   }, [bookings]);
 
   const handlePayNow = async (booking) => {
-    const departure = new Date(
-      `${booking.departureDate}T${booking.departureTime}`,
-    );
-
-    if (departure.getTime() < Date.now()) {
-      alert("Cannot pay after departure time");
-      return;
-    }
-
     try {
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/api/stripe/checkout`,
@@ -92,12 +83,9 @@ export default function MyBookedTicketsPage() {
 
       if (data.url) {
         window.location.href = data.url; // redirect to Stripe
-      } else {
-        alert("Failed to start payment");
       }
     } catch (err) {
       console.error(err);
-      alert("Payment error");
     }
   };
 

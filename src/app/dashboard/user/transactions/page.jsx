@@ -11,21 +11,19 @@ export default function TransactionsPage() {
 
   useEffect(() => {
     if (!session?.user?.email) return;
-
     fetchTransactions();
   }, [session]);
 
   const fetchTransactions = async () => {
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_SERVER_URL}/api/transactions/${session.user.email}`
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/api/transactions/${session.user.email}`,
       );
 
       const data = await res.json();
-
-      setTransactions(Array.isArray(data) ? data : []);
-    } catch (error) {
-      console.error(error);
+      setTransactions(data || []);
+    } catch (err) {
+      console.error(err);
     } finally {
       setLoading(false);
     }
@@ -33,60 +31,59 @@ export default function TransactionsPage() {
 
   if (loading) {
     return (
-      <div className="p-8 text-white">
-        Loading transactions...
-      </div>
+      <div className="p-10 text-center text-white">Loading transactions...</div>
     );
   }
 
   return (
     <div className="w-full p-6 text-white">
-      <h1 className="text-3xl font-bold mb-8">
-        Transaction History
-      </h1>
+      <h1 className="text-3xl font-bold mb-8">Transaction History</h1>
 
       {transactions.length === 0 ? (
-        <div className="text-center py-12 text-[#c8a27a]">
+        <div className="bg-[#2a1a14] rounded-2xl p-10 text-center text-[#c8a27a]">
           No transactions found
         </div>
       ) : (
-        <div className="overflow-x-auto rounded-xl border border-[#c8a27a]/20">
-          <table className="table w-full">
-            <thead className="bg-[#2a1a14] text-[#c8a27a]">
-              <tr>
-                <th>#</th>
-                <th>Transaction ID</th>
-                <th>Amount</th>
-                <th>Ticket Title</th>
-                <th>Payment Date</th>
+        <div className="overflow-x-auto rounded-2xl border border-[#c8a27a]/20 bg-[#2a1a14]">
+          <table className="w-full min-w-[900px]">
+            <thead>
+              <tr className="bg-[#1c120d] text-[#c8a27a]">
+                <th className="px-6 py-4 text-left">#</th>
+
+                <th className="px-6 py-4 text-left">Transaction ID</th>
+
+                <th className="px-6 py-4 text-left">Amount</th>
+
+                <th className="px-6 py-4 text-left">Ticket Title</th>
+
+                <th className="px-6 py-4 text-left">Payment Date</th>
               </tr>
             </thead>
 
             <tbody>
-              {transactions.map((transaction, index) => (
+              {transactions.map((t, index) => (
                 <tr
-                  key={transaction._id}
-                  className="border-b border-[#c8a27a]/10"
+                  key={t._id}
+                  className="border-t border-[#c8a27a]/10 hover:bg-[#3a241b] transition"
                 >
-                  <td>{index + 1}</td>
+                  <td className="px-6 py-4">{index + 1}</td>
 
-                  <td className="max-w-[220px] truncate">
-                    {transaction.stripePaymentIntent ||
-                      transaction.stripeSessionId}
+                  <td className="px-6 py-4">
+                    <div className="max-w-[280px] truncate font-mono text-sm text-[#e6d5c3]">
+                      {t.sessionId}
+                    </div>
                   </td>
 
-                  <td>
-                    ${transaction.totalPrice}
+                  <td className="px-6 py-4 font-semibold text-green-400">
+                    ${t.amount}
                   </td>
 
-                  <td>
-                    {transaction.ticketTitle}
-                  </td>
+                  <td className="px-6 py-4">{t.ticketTitle || "N/A"}</td>
 
-                  <td>
-                    {new Date(
-                      transaction.transactionDate
-                    ).toLocaleString()}
+                  <td className="px-6 py-4 text-[#e6d5c3]">
+                    {t.transactionDate
+                      ? new Date(t.transactionDate).toLocaleString()
+                      : "N/A"}
                   </td>
                 </tr>
               ))}
