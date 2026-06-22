@@ -72,7 +72,7 @@ const dashboardConfig = {
     {
       label: "Advertise Tickets",
       icon: Megaphone,
-      link: "/dashboard/admin/advertise-tickets",
+      link: "/dashboard/admin/ad-tickets",
     },
   ],
 };

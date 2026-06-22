@@ -79,19 +79,25 @@ export default function MyBookedTicketsPage() {
     }
 
     try {
-      const res = await fetch("/api/stripe/checkout", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ booking }),
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/api/stripe/checkout`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ booking }),
+        },
+      );
 
       const data = await res.json();
 
       if (data.url) {
         window.location.href = data.url; // redirect to Stripe
+      } else {
+        alert("Failed to start payment");
       }
     } catch (err) {
       console.error(err);
+      alert("Payment error");
     }
   };
 
@@ -118,19 +124,17 @@ export default function MyBookedTicketsPage() {
                 className="bg-[#2a1a14] rounded-2xl overflow-hidden border border-[#c8a27a]/20"
               >
                 <img
-                  src={booking.ticketImage || "/placeholder.jpg"}
-                  alt={booking.ticketTitle}
+                  src={booking.image || "/placeholder.jpg"}
+                  alt={booking.title}
                   className="w-full h-52 object-cover"
                 />
 
                 <div className="p-5">
-                  <h2 className="text-xl font-bold mb-3">
-                    {booking.ticketTitle}
-                  </h2>
+                  <h2 className="text-xl font-bold mb-3">{booking.title}</h2>
 
                   <div className="space-y-2 text-sm text-[#e6d5c3]">
                     <p>
-                      <span className="text-[#c8a27a]">Quantity:</span>{" "}
+                      <span className="text-[#c8a27a]">Quantity:</span>
                       {booking.quantity}
                     </p>
 

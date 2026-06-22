@@ -1,68 +1,99 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { authClient } from "@/lib/auth-client";
 
 export default function TransactionsPage() {
+  const { data: session } = authClient.useSession();
+
   const [transactions, setTransactions] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function fetchTransactions() {
-      try {
-        const res = await fetch("/api/transactions");
-        const data = await res.json();
-        setTransactions(data.transactions);
-      } catch (err) {
-        console.error("Failed to load transactions:", err);
-      } finally {
-        setLoading(false);
-      }
-    }
+    if (!session?.user?.email) return;
 
     fetchTransactions();
-  }, []);
+  }, [session]);
+
+  const fetchTransactions = async () => {
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/api/transactions/${session.user.email}`
+      );
+
+      const data = await res.json();
+
+      setTransactions(Array.isArray(data) ? data : []);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   if (loading) {
-    return <p className="p-4">Loading transactions...</p>;
+    return (
+      <div className="p-8 text-white">
+        Loading transactions...
+      </div>
+    );
   }
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">Transaction History</h1>
+    <div className="w-full p-6 text-white">
+      <h1 className="text-3xl font-bold mb-8">
+        Transaction History
+      </h1>
 
-      <div className="overflow-x-auto">
-        <table className="min-w-full border border-gray-200">
-          <thead className="bg-gray-100">
-            <tr>
-              <th className="text-left p-3 border-b">Transaction ID</th>
-              <th className="text-left p-3 border-b">Amount</th>
-              <th className="text-left p-3 border-b">Ticket Title</th>
-              <th className="text-left p-3 border-b">Payment Date</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {transactions.length === 0 ? (
+      {transactions.length === 0 ? (
+        <div className="text-center py-12 text-[#c8a27a]">
+          No transactions found
+        </div>
+      ) : (
+        <div className="overflow-x-auto rounded-xl border border-[#c8a27a]/20">
+          <table className="table w-full">
+            <thead className="bg-[#2a1a14] text-[#c8a27a]">
               <tr>
-                <td colSpan="4" className="p-4 text-center text-gray-500">
-                  No transactions found.
-                </td>
+                <th>#</th>
+                <th>Transaction ID</th>
+                <th>Amount</th>
+                <th>Ticket Title</th>
+                <th>Payment Date</th>
               </tr>
-            ) : (
-              transactions.map((tx) => (
-                <tr key={tx.id} className="border-b hover:bg-gray-50">
-                  <td className="p-3 font-mono text-sm">{tx.id}</td>
-                  <td className="p-3">${(tx.amount / 100).toFixed(2)}</td>
-                  <td className="p-3">{tx.ticketTitle}</td>
-                  <td className="p-3">
-                    {new Date(tx.paymentDate).toLocaleDateString()}
+            </thead>
+
+            <tbody>
+              {transactions.map((transaction, index) => (
+                <tr
+                  key={transaction._id}
+                  className="border-b border-[#c8a27a]/10"
+                >
+                  <td>{index + 1}</td>
+
+                  <td className="max-w-[220px] truncate">
+                    {transaction.stripePaymentIntent ||
+                      transaction.stripeSessionId}
+                  </td>
+
+                  <td>
+                    ${transaction.totalPrice}
+                  </td>
+
+                  <td>
+                    {transaction.ticketTitle}
+                  </td>
+
+                  <td>
+                    {new Date(
+                      transaction.transactionDate
+                    ).toLocaleString()}
                   </td>
                 </tr>
-              ))
-            )}
-          </tbody>
-        </table>
-      </div>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 }

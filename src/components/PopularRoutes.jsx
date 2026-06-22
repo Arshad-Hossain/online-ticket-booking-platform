@@ -101,7 +101,7 @@ const PopularRoutes = () => {
                 </p>
 
                 <Link
-                  href="/tickets"
+                  href="/all-tickets"
                   className="mt-6 inline-block text-[#e6c29f] hover:text-[#f5e6d3] font-medium"
                 >
                   View Tickets →

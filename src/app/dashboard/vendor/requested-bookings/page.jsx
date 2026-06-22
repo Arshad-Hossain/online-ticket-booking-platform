@@ -78,7 +78,7 @@ export default function VendorBookingRequestsPage() {
                   <p className="text-xs text-gray-400">{b.userEmail}</p>
                 </td>
 
-                <td className="p-3">{b.ticketTitle}</td>
+                <td className="p-3">{b.title}</td>
 
                 <td className="p-3">{b.quantity}</td>
 
