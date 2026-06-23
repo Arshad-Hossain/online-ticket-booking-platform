@@ -102,7 +102,7 @@ export default function LatestTickets() {
 
                 {/* Button */}
                 <Link
-                  href={`/tickets/${ticket._id}`}
+                  href={`/all-tickets/${ticket._id}`}
                   className="block text-center mt-5 py-3 rounded-xl bg-gradient-to-r from-[#c8a27a] to-[#e6c29f] text-[#1c120d] font-semibold"
                 >
                   See Details

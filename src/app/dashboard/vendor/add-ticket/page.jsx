@@ -70,6 +70,7 @@ export default function AddTicketPage() {
     };
 
     try {
+      // const { data: token } = await authClient.token();
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/api/tickets`,
         {
@@ -151,6 +152,7 @@ export default function AddTicketPage() {
             >
               <option>Bus</option>
               <option>Train</option>
+              <option>Plane</option>
             </select>
           </div>
 

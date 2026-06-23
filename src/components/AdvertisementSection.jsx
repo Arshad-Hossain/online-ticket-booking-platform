@@ -27,7 +27,9 @@ export default function AdvertisementSection() {
   return (
     <section className="py-20 bg-[#1c120d] text-white">
       <div className="max-w-7xl mx-auto px-5">
-        <h2 className="text-4xl font-bold mb-10">Featured Advertisements</h2>
+        <h2 className="text-4xl font-bold mb-10 text-center">
+          Featured Advertisements
+        </h2>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {tickets.map((ticket) => (
