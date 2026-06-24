@@ -70,13 +70,22 @@ export default function AddTicketPage() {
     };
 
     try {
-      // const { data: token } = await authClient.token();
+      const { data: token } = await authClient.token();
+      console.log(token);
+
+      // const result = await authClient.token();
+
+      // console.log("FULL RESULT:", result);
+      // console.log("DATA:", result?.data);
+      // console.log("TOKEN:", result?.data?.token);
+      // console.log("TYPE:", typeof result?.data?.token);
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/api/tickets`,
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            authorization: `Bearer ${token?.token}`,
           },
           body: JSON.stringify(ticketData),
         },
